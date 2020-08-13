@@ -1,6 +1,6 @@
 # Fantasy Stock
 ### Last Update : June 2020
-### A community where you can __enjoy virtual stock trading__🤩
+### A community where you can __ enjoy virtual stock trading __🤩
 
 Presentation & Demonstration : [Link]
 
