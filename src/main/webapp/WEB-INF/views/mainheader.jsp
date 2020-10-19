@@ -79,11 +79,11 @@
 			로고들어가는곳 -->
 			
 			
-			<a href="/mainPage" class="navbar-logo">
+			<a href="/" class="navbar-logo">
 			<img class="" id="logo"
 				src="/resources/img/finalogo.png">
 				</a> 
-<!-- 				<a class="navbar-brand" href="/mainPage">Fantasy Stock</a>
+<!-- 				<a class="navbar-brand" href="/">Fantasy Stock</a>
  -->				
 				
 				

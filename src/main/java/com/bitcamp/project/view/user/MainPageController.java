@@ -1,12 +1,17 @@
 package com.bitcamp.project.view.user;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,11 +56,27 @@ public class MainPageController {
 
 	@Autowired
 	SignInService signInService;
+	
 	@Autowired
 	MyAccountService myAccountService;
 
-	@GetMapping(value = "/mainPage")
+	@Autowired
+	HttpServletRequest request;
+	
+	@GetMapping(value = "/")
 	public ModelAndView mainPage(BoardVO vo, HttpSession session) {
+		
+		
+		String ip = request.getRemoteAddr();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
+
+		Date time_ = new Date();
+
+		String time = format.format(time_);
+		System.out.println("ip : " + ip + " " + time + " path " + request.getServletPath());
+
+		
+		
 		ModelAndView mav = new ModelAndView();
 		DecimalFormat formatter = new DecimalFormat("###,###,###");
 		Map<String, Object> kospiChart = tradeService.dayChart("종합주가지수");
@@ -227,7 +248,7 @@ public class MainPageController {
 		mav.addObject("commentKeyword", commentKeyword);
 		mav.addObject("type", type);
 		
-		mav.setViewName("selectUserBoard");
+		mav.setViewName("/myPage/selectUserBoard");
 		
 		
 		return mav;
@@ -297,7 +318,7 @@ public class MainPageController {
 			mav.addObject("type", type);
 			mav.addObject("accumAsset", hm4.get("accumAsset"));
 			mav.addObject("ranking", hm4.get("ranking"));
-			mav.setViewName("selectUserMoney");
+			mav.setViewName("/myPage/selectUserMoney");
 			
 			System.out.println("1 "+(PagingVO) hm1.get("pv1"));
 			System.out.println("2 "+(PagingVO) hm2.get("pv2"));

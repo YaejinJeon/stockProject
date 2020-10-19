@@ -2,25 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- parameterType의 생략이 가능하다
-	#{title}은 parameter로 전달된 getTitle()메서드를 
-	호출한다.
- -->
 <mapper namespace="user">
 
-	<!-- 컬럼이름과 자바객체의 프로퍼티명이 다를 때는
-	     아래처럼 매핑 규칙을 정해줘야 한다 -->
-<!-- 	<resultMap id="userResult" type="user">
-		<id property="id" column="ID"/>
-		<result property="pw" column="PW"/>
-		<result property="nickname" column="NICKNAME"/>
-		<result property="tel" column="TEL"/>
-		<result property="point" column="POINT"/>
-		<result property="showEsetSetting" column="SHOWESETSETTING"/>
-		<result property="address" column="ADDRESS"/>
-		<result property="charge" column="CHARGE"/>
-	</resultMap> -->
-	
 	<delete id="withdrawal">
 		SET foreign_key_checks = 0;
 		delete from unsettledcheck where uno = (select uno from unsettled where id = #{id});
@@ -245,52 +228,8 @@
 		order by accumasset desc
 		limit 0, 10
 	</select>
-	<!-- <insert id="nickname">
-		
 
-		
-	</insert> -->
-	
-	<!-- <update id="updateBoard">
-		update board set TITLE=#{title},
-		CONTENT=#{content} where SEQ=#{seq}
-	</update>
-	
-	<delete id="deleteBoard">
-		delete board where SEQ=#{seq}
-	</delete> -->
-	
-	<!-- CDATA영역에 작성된 데이터는 단순 문자 데이터이다
-	     그러므로 XML 파서는 처리하지 말아라. -->
-	<!-- <select id="getBoardLt" resultType="board">
-		<![CDATA[
-		select * from board where SEQ <= #{seq}
-		]]>
-	</select> -->
-		
-	<!-- <select id="getBoardList_T" resultType="board">
-		select * from board
-		where TITLE like '%'||#{searchKeyword}||'%'
-		order by SEQ desc
-	</select>
 
-	<select id="getBoardList_C" resultType="board">
-		select * from board
-		where CONTENT like '%'||#{searchKeyword}||'%'
-		order by SEQ desc
-	</select> -->
-
-	<!-- <select id="getBoardList" resultType="board">
-		select * from board
-		where 1=1
-		<if test="searchCondition == 'title'">
-			and TITLE like '%'||#{searchKeyword}||'%'
-		</if>
-		<if test="searchCondition == 'content'">
-			and CONTENT like '%'||#{searchKeyword}||'%'
-		</if> 
-		order by SEQ desc
-	</select> -->
 </mapper>
 
 

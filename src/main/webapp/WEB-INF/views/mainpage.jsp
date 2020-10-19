@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>mainpage</title>
+<title>FantasyStock</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <link rel="stylesheet" href="/resources/css/mainpage.css">
@@ -145,7 +145,7 @@
 									<a href="/forgetPassword">비밀번호 찾기</a></span>
 								    <span class="social-login"> 
 								    <a href="/naverLogin" class="social-type naver">네이버 로그인</a>
-									<a href="https://kauth.kakao.com/oauth/authorize?client_id=68ded79fcd9705764c35c87e4e593e4c&redirect_uri=http://106.240.16.163:8080/kakao&response_type=code" class="social-type kakaotalk">카카오톡 로그인</a>
+									<a href="https://kauth.kakao.com/oauth/authorize?client_id=411ad5d7607a5206006f889840ab2b27&redirect_uri=http://www.fantasystock.shop/kakao&response_type=code" class="social-type kakaotalk">카카오톡 로그인</a>
 									</span>
 								</p>
 							</div>
@@ -406,7 +406,7 @@
 									<a href="/forgetPassword">비밀번호 찾기</a></span>
 								    <span class="social-login"> 
 								    <a href="/naverLogin" class="social-type naver">네이버 로그인</a>
-									<a href="https://kauth.kakao.com/oauth/authorize?client_id=68ded79fcd9705764c35c87e4e593e4c&redirect_uri=http://106.240.16.163:8080/kakao&response_type=code" class="social-type kakaotalk">카카오톡 로그인</a>
+									<a href="https://kauth.kakao.com/oauth/authorize?client_id=411ad5d7607a5206006f889840ab2b27&redirect_uri=http://www.fantasystock.shop/kakao&response_type=code" class="social-type kakaotalk">카카오톡 로그인</a>
 									</span>
 								</p>
 							</div>
@@ -1065,6 +1065,15 @@
  			}
  		});
  	}
+</script>
+
+<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+	if(!wcs_add) var wcs_add = {};
+	wcs_add["wa"] = "7a21168adc713c";
+	if(window.wcs) {
+	wcs_do();
+	}
 </script>
 
 </body>

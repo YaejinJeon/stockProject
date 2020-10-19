@@ -59,7 +59,7 @@
 					</div>
 					<div class="bt-area">  
 						<a href="/signInPage" class="btn-b">로그인</a>
-						<a href="/mainPage" class="btn-b fantasy">취소</a> 
+						<a href="/" class="btn-b fantasy">취소</a> 
 					</div>
 				</div>
 				<!-- //info-modify -->

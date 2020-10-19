@@ -60,7 +60,7 @@
 
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!--    로고들어감 -->
-        			<a href="/mainPage" class="navbar-logo">
+        			<a href="/" class="navbar-logo">
 			<img class="" id="logo"
 				src="/resources/img/finalogo.png">
 				</a> 

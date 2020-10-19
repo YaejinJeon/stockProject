@@ -149,7 +149,7 @@ h1, h2 {
 </style>
 </head>
 <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Condensed:100,200,300,400" rel="stylesheet">
-<body class="loading" onclick="location.href='/mainPage'">
+<body class="loading" onclick="location.href='/'">
   <h1>500</h1>
   <h2>죄송합니다 에러입니다 <b>:(</b></h2>
   <h2>아무곳이나 클릭해주세요 <b>:(</b></h2>

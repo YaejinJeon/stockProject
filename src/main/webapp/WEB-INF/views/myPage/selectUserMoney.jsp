@@ -33,7 +33,7 @@
 </head>
 <body>
 
-	<%@include file="mainheader.jsp"%>
+	<%@include file="../mainheader.jsp"%>
 
 	<div class="containerNew">
 		<div class="contents">
@@ -524,7 +524,7 @@
 
 
 
-<%@include file="mainfooter.jsp"%>
+<%@include file="../mainfooter.jsp"%>
 		<script type="text/javascript">
 			$(document).ready(
 					function() {

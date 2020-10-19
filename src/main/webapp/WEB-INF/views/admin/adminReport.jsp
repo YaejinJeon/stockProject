@@ -49,7 +49,7 @@
 
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!--    로고들어감 -->
-        			<a href="/mainPage" class="navbar-logo">
+        			<a href="/" class="navbar-logo">
 			<img class="" id="logo"
 				src="/resources/img/finalogo.png">
 				</a> 
@@ -105,7 +105,6 @@
 									<colgroup>
 										<col width="15%">
 										<col width="40%">
-										
 										<col width="10%">
 										<col width="15%">
 										<col width="20%">
@@ -123,7 +122,9 @@
 										<c:forEach items="${reportList}" var="re" varStatus="status">
 	                                       <tr>	
 	                                       		<td><p class="board-no">${re.rtype}</p></td>
-	                                            <td class="board-title" onclick="findRno('${re.rno}');"><a class="content" id="popup-btn" style="cursor: pointer;">${re.title}</a></td>
+	                                            <td class="board-title" onclick="findRno('${re.rno}');">
+	                                            <a class="content" id="popup-btn" style="cursor: pointer;">${re.title}</a>
+	                                            </td>
 	                                            <td class="board-writer">${re.nickname}</td>
 	                                            <td class="board-views">${re.rcheck}</td>
 	                                            <td class="board-date"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${re.rdatetime}"/></td>
@@ -316,7 +317,6 @@
 				data : { "rno" : rno },
 				success : function(data) {
 					var reportSelectList = "";
-					
 					reportSelectList += '<tr>'
 					reportSelectList += 	'<th scope="col">처리현황</th>'
 					reportSelectList += 	'<td id="re.rcheck">'+data.reportSelectList.rcheck+'</td>'
@@ -330,10 +330,8 @@
 					reportSelectList += 	'<td>'+data.reportSelectList.rtype+'</td>'
 					reportSelectList += '</tr>'
 					reportSelectList += 	'<th scope="col">게시판 명</th>'
-					if(data.reportSelectList.bno === 'free')
-						data.reportSelectList.bno = '자유게시판'
-					if(data.reportSelectList.bno === 'portfolio')
-						data.reportSelectList.bno = '포트폴리오 게시판'
+					if(data.reportSelectList.bno === 'free')data.reportSelectList.bno = '자유게시판'
+					if(data.reportSelectList.bno === 'portfolio')data.reportSelectList.bno = '포트폴리오 게시판'
 					reportSelectList += 	'<td>'+data.reportSelectList.bno+'</td>'
 					reportSelectList += '</tr>'
 					reportSelectList += '<tr>'
@@ -345,8 +343,6 @@
 					reportSelectList += 	'<td>'+data.reportSelectList.title+'</td>'
 					reportSelectList += '</tr>'
 					reportSelectList += '<tr>'
-					
-
 					$("#reportSelectList").html(reportSelectList);
 					var pageLocation=""
 					if(data.reportSelectList.rcheck === '처리대기중'){
@@ -360,10 +356,7 @@
 						}
 					}
 					pageLocation += '<button type="button"  onclick="hidePopup()" class="btn-m e-reportPopupClose">취소</button></span>'
-							
 					$("#pageLocation").html(pageLocation);
-							
-					
 				},
 				error: function(){
 				}

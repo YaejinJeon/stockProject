@@ -25,126 +25,112 @@ public class News {
 			String today = format1.format(today_);
 			
 			// 실시간 속보
-//			for(int k=0; k < 3; k++) {
-//				String naverUrl = "https://finance.naver.com/news/news_list.nhn?mode=LSS2D&section_id=101&section_id2=258&date="+today+"&page="+(k+1);
-				String naverUrl = "https://finance.naver.com/news/news_list.nhn?mode=LSS2D&section_id=101&section_id2=258&date="+today;
-//				String naverUrl = "https://finance.naver.com/news/news_list.nhn?mode=LSS2D&section_id=101&section_id2=258&date=20200619&page="+(k+1);
-				Document doc = null; // Document에는 페이지의 전체 소스가 저장된다
-				doc = Jsoup.connect(naverUrl).get();
-//				String check = doc.select("#contentarea_left > ul > li:nth-child(2) > dl").html();
-//				System.out.println(check);
-//				if(check.equals("")) continue;
-				String news = doc.select("#contentarea_left > ul").html();
-	//System.out.println(news);
-				String[] title_ = null;
-				title_ = news.split("title=\"");
-				List<String> title = new ArrayList<String>();
-	
-				String[] content_ = null;
-				content_ = news.split("title=\"");
-				List<String> content = new ArrayList<String>();
-	
-				
-				String[] writer_ = null;
-				writer_ = news.split("title=\"");
-				List<String> writer = new ArrayList<String>();
-	
-				String[] time_ = null;
-				time_ = news.split("<span class=\"wdate\">");
-				List<String> time = new ArrayList<String>();
-				
-				String[] url_ = null;
-				url_ = news.split("class=\"articleSubject\"");
-				List<String> url = new ArrayList<String>();
-				
-				String[] img_ = null;
-				img_ = news.split("title=\"");
-				String[] img_A = new String[img_.length];
-				List<String> img = new ArrayList<String>();
-	
-				
-				int start = 0;
-				int end = 0;
-				int cnt = 0;
-				for (int i = 0; i < title_.length; i++) {
-					if(title_[i].indexOf("newsList top") == -1) {
-						
-					
-						if(title_[i].contains("articleSubject") || title_[i].contains("articleSummary")) {
-							if(title_[i].indexOf("\">\"") != -1) {
-								end = title_[i].indexOf("\">\"");
-							}else if(title_[i].indexOf("\">'") != -1) {
-								end = title_[i].indexOf("\">'");
-							}else {
-								end = title_[i].indexOf("\">");
-							}
-							title_[i] = title_[i].substring(0, end);
-							title_[i] = title_[i].replace("&quot;", "");
-							title.add(title_[i]);
+			String naverUrl = "https://finance.naver.com/news/news_list.nhn?mode=LSS2D&section_id=101&section_id2=258&date="+today;
+			Document doc = null; // Document에는 페이지의 전체 소스가 저장된다
+			doc = Jsoup.connect(naverUrl).get();
+			String news = doc.select("#contentarea_left > ul").html();
+			String[] title_ = null;
+			title_ = news.split("title=\"");
+			List<String> title = new ArrayList<String>();
+
+			String[] content_ = null;
+			content_ = news.split("title=\"");
+			List<String> content = new ArrayList<String>();
+
+
+			String[] writer_ = null;
+			writer_ = news.split("title=\"");
+			List<String> writer = new ArrayList<String>();
+
+			String[] time_ = null;
+			time_ = news.split("<span class=\"wdate\">");
+			List<String> time = new ArrayList<String>();
+
+			String[] url_ = null;
+			url_ = news.split("class=\"articleSubject\"");
+			List<String> url = new ArrayList<String>();
+
+			String[] img_ = null;
+			img_ = news.split("title=\"");
+			String[] img_A = new String[img_.length];
+			List<String> img = new ArrayList<String>();
+
+
+			int start = 0;
+			int end = 0;
+			int cnt = 0;
+			for (int i = 0; i < title_.length; i++) {
+				if(title_[i].indexOf("newsList top") == -1) {
+
+
+					if(title_[i].contains("articleSubject") || title_[i].contains("articleSummary")) {
+						if(title_[i].indexOf("\">\"") != -1) {
+							end = title_[i].indexOf("\">\"");
+						}else if(title_[i].indexOf("\">'") != -1) {
+							end = title_[i].indexOf("\">'");
+						}else {
+							end = title_[i].indexOf("\">");
 						}
+						title_[i] = title_[i].substring(0, end);
+						title_[i] = title_[i].replace("&quot;", "");
+						title.add(title_[i]);
 					}
-					
-					if(content_[i].indexOf("class=\"articleSummary\">") != -1) {
-						start = content_[i].indexOf("\"articleSummary\">");
-						end = content_[i].indexOf(" <span class=\"press\">");
-						content_[i] = content_[i].substring(start+22, end);
-						content.add(content_[i]);
-					}
-					
-					
-					if(writer_[i].indexOf("<span class=\"press\">") != -1) {
-						start = writer_[i].indexOf("<span class=\"press\">");
-						end = writer_[i].indexOf("</span> <span class=\"bar\">");
-						writer_[i] = writer_[i].substring(start+20, end);
-						writer_[i] = writer_[i].replace("&quot;", "");
-						writer.add(writer_[i]);
-					}	
-	
-					
-					if(time_[i].indexOf("newsList top") == -1) {
-						end = time_[i].indexOf("</span>");
-						time_[i] = time_[i].substring(0, end);
-	//					time_[i] = time_[i].replace("&quot;", "");
-						time.add(time_[i]);
-					}	
-					
+				}
+
+				if(content_[i].indexOf("class=\"articleSummary\">") != -1) {
+					start = content_[i].indexOf("\"articleSummary\">");
+					end = content_[i].indexOf(" <span class=\"press\">");
+					content_[i] = content_[i].substring(start+22, end);
+					content.add(content_[i]);
+				}
+
+
+				if(writer_[i].indexOf("<span class=\"press\">") != -1) {
+					start = writer_[i].indexOf("<span class=\"press\">");
+					end = writer_[i].indexOf("</span> <span class=\"bar\">");
+					writer_[i] = writer_[i].substring(start+20, end);
+					writer_[i] = writer_[i].replace("&quot;", "");
+					writer.add(writer_[i]);
+				}	
+
+
+				if(time_[i].indexOf("newsList top") == -1) {
+					end = time_[i].indexOf("</span>");
+					time_[i] = time_[i].substring(0, end);
+//					time_[i] = time_[i].replace("&quot;", "");
+					time.add(time_[i]);
+				}	
+
 //					if(i < url_.length) {
-						if(url_[i].indexOf("newsList top") == -1) {
-							start = url_[i].indexOf("<a href=\"");
-							if(url_[i].indexOf("\" title=\"") != -1){
-								end = url_[i].indexOf("\" title=\"");
-								url_[i] = url_[i].substring(start+9, end);
-							}else if(url_[i].indexOf("<img src=\"") != -1) {
-								end = url_[i].indexOf("<img src=\"");
-								url_[i] = url_[i].substring(start+9, end);
-							}else continue;
-							url_[i] = url_[i].replace("&quot;", "");
-							url_[i] = url_[i].replace("amp;", "");
-		
-		//					time_[i] = time_[i].replace("&quot;", "");
-							url.add(url_[i]);
-						}
-//					}
-//					System.out.println(i + " " + url);
-//					System.out.println(i+" "+url);
-//					System.out.println(i+" "+title);
-	//				
-					if(img_[i].indexOf("<a href=\"/") != -1) {
-						if(img_[i].indexOf("<img src=\"") != -1) {
-							img_A[cnt] = img_[i];	
-							start = img_A[cnt].indexOf("<img src=\"");
-							end = img_A[cnt].indexOf("alt=");
-							img.add(img_A[cnt].substring(start+10, end-2));
-		//					time_[i] = time_[i].replace("&quot;", "");
-							cnt++;
-						}
-						else {
-							img.add(null);
-							cnt++;
-						}
-					}	
+					if(url_[i].indexOf("newsList top") == -1) {
+						start = url_[i].indexOf("<a href=\"");
+						if(url_[i].indexOf("\" title=\"") != -1){
+							end = url_[i].indexOf("\" title=\"");
+							url_[i] = url_[i].substring(start+9, end);
+						}else if(url_[i].indexOf("<img src=\"") != -1) {
+							end = url_[i].indexOf("<img src=\"");
+							url_[i] = url_[i].substring(start+9, end);
+						}else continue;
+						url_[i] = url_[i].replace("&quot;", "");
+						url_[i] = url_[i].replace("amp;", "");
+
+						url.add(url_[i]);
+					}
+
+				if(img_[i].indexOf("<a href=\"/") != -1) {
+					if(img_[i].indexOf("<img src=\"") != -1) {
+						img_A[cnt] = img_[i];	
+						start = img_A[cnt].indexOf("<img src=\"");
+						end = img_A[cnt].indexOf("alt=");
+						img.add(img_A[cnt].substring(start+10, end-2));
+						cnt++;
+					}
+					else {
+						img.add(null);
+						cnt++;
+					}
+				}	
 			}
-//			System.out.println(news);
 			Map<String, Object> map = new HashMap<String, Object>();
 			
 			map.put("title", title);

@@ -46,7 +46,7 @@
 
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!--    로고들어감 -->
-        			<a href="/mainPage" class="navbar-logo">
+        			<a href="/" class="navbar-logo">
 			<img class="" id="logo"
 				src="/resources/img/finalogo.png">
 				</a> 
@@ -264,13 +264,9 @@
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 <script>
-	
-	
 	google.charts.load("current", {packages:["bar"]});
 	google.charts.setOnLoadCallback(drawUserVisitChart);
-	
-	function drawUserVisitChart() {
-	
+	function drawUserVisitChart() { // 유저 방문현황
 		 var data = google.visualization.arrayToDataTable([
 	          ['유저 방문현황', '방문 수'],
 	          ["${userVisitChart[7].chartDate}", ${userVisitChart[7].chartCount}],
@@ -282,33 +278,19 @@
 	          ["${userVisitChart[1].chartDate}", ${userVisitChart[1].chartCount}],
 	          ["${userVisitChart[0].chartDate}", ${userVisitChart[0].chartCount}]
 	        ]);
-		 
-		 
-		 
 		var options = {
 			chart : {
 				title : '유저 방문현황',
 				subtitle : ''
-				
 			}
 		};
-	
 		var chart = new google.charts.Bar(document
 				.getElementById('userVisitChart'));
-	
 		chart.draw(data, google.charts.Bar.convertOptions(options));
-	
 	}	
-	
-	
-	
-
     google.charts.load('current', {'packages':['corechart']});
 	google.charts.setOnLoadCallback(drawUserSignUpChart);
-
-	function drawUserSignUpChart() {
-	console.log("${userSignUpChart[4].chartDate}")
-
+	function drawUserSignUpChart() { // 유저 가입현황
 		var data = google.visualization.arrayToDataTable([
 	          ['유저', '수'],
 	          ["${userSignUpChart[4].chartDate}", ${userSignUpChart[4].chartCount}],
@@ -317,29 +299,19 @@
 	          ["${userSignUpChart[1].chartDate}", ${userSignUpChart[1].chartCount}],
 	          ["${userSignUpChart[0].chartDate}", ${userSignUpChart[0].chartCount}]
 	        ]);
-		
-	
-	
 		var options2 = {
 				chart : {
 					title : '유저가입현황',
 					subtitle : ''
-					
 				}
 			};
-	
 		var chart = new google.visualization.AreaChart(document
 				.getElementById('userSignUpChart'));
-
 		chart.draw(data, options2);
-		 
-
 	}	
-
 	google.charts.load("current", {packages:["bar"]});
 	google.charts.setOnLoadCallback(drawBoardChart);
-
-	function drawBoardChart() {
+	function drawBoardChart() { // 일별 게시물 개수
 
 		 var data = google.visualization.arrayToDataTable([
 	          ['게시물', '개수'],
@@ -349,20 +321,14 @@
 	          ["${boardChart[1].chartDate}", ${boardChart[1].chartCount}],
 	          ["${boardChart[0].chartDate}", ${boardChart[0].chartCount}]
 	        ]);
-		 
-		 
-		 
 		var options = {
 			chart : {
 				title : '일별 게시물 개수',
 				subtitle : ''
-				
 			}
 		};
-
 		var chart = new google.charts.Bar(document
 				.getElementById('boardChart'));
-
 		chart.draw(data, google.charts.Bar.convertOptions(options));
 
 	}	

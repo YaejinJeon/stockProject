@@ -110,17 +110,17 @@ public class FileUpload {
 	public void thumbnail(String realFileNm, String filePath, String filename_ext) {
 		try {
 
-			// 원본 이미지 입니다.
+			// 원본 이미지
 			BufferedImage srcImg = ImageIO.read(new File(filePath + realFileNm));
 //			313.234    219.250
-			// 썸네일 크기 입니다.
+			// 썸네일 크기
 			int dw = 450, dh = 270;
 
-			// 원본이미지 크기 입니다.
+			// 원본이미지 크기
 			int ow = srcImg.getWidth();
 			int oh = srcImg.getHeight();
 
-			// 늘어날 길이를 계산하여 패딩합니다.
+			// 늘어날 길이를 계산하여 패딩
 			int pd = 0;
 			if (ow > oh) {
 				pd = (int) (Math.abs((dh * ow / (double) dw) - oh) / 2d);
@@ -129,11 +129,11 @@ public class FileUpload {
 			}
 			srcImg = Scalr.pad(srcImg, pd, Color.WHITE, Scalr.OP_ANTIALIAS);
 
-			// 이미지 크기가 변경되었으므로 다시 구합니다.
+			// 이미지 크기 
 			ow = srcImg.getWidth();
 			oh = srcImg.getHeight();
 
-			// 썸네일 비율로 크롭할 크기를 구합니다.
+			// 썸네일 비율로 크롭
 			int nw = ow;
 			int nh = (ow * dh) / dw;
 			if (nh > oh) {
@@ -141,7 +141,7 @@ public class FileUpload {
 				nh = oh;
 			}
 
-			// 늘려진 이미지의 중앙을 썸네일 비율로 크롭 합니다.
+			// 늘려진 이미지의 중앙을 썸네일 비율로 크롭
 			BufferedImage cropImg = Scalr.crop(srcImg, (ow - nw) / 2, (oh - nh) / 2, nw, nh);
 
 			// 리사이즈(썸네일 생성)
@@ -207,7 +207,7 @@ public class FileUpload {
 
 					// 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
 					if (originDelete.exists()) {
-						// 파일을 삭제합니다.
+						// 파일을 삭제
 						thumbnailDelete.delete();
 					}
 
@@ -246,7 +246,7 @@ public class FileUpload {
 
 					// 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
 					if (originDelete.exists()) {
-						// 파일을 삭제합니다.
+						// 파일을 삭제
 						thumbnailDelete.delete();
 					}
 
@@ -279,17 +279,17 @@ public class FileUpload {
 	public void thumbnailUpdate(String realFileNm, String filePath, String filename_ext) {
 		try {
 			File f = new File(filePath + realFileNm + "." + filename_ext);
-			// 원본 이미지 입니다.
+			// 원본 이미지
 			BufferedImage srcImg = ImageIO.read(f);
 
-			// 썸네일 크기 입니다.
+			// 썸네일 크기
 			int dw = 450, dh = 270;
 
-			// 원본이미지 크기 입니다.
+			// 원본이미지
 			int ow = srcImg.getWidth();
 			int oh = srcImg.getHeight();
 
-			// 늘어날 길이를 계산하여 패딩합니다.
+			// 늘어날 길이를 계산
 			int pd = 0;
 			if (ow > oh) {
 				pd = (int) (Math.abs((dh * ow / (double) dw) - oh) / 2d);
@@ -298,11 +298,11 @@ public class FileUpload {
 			}
 			srcImg = Scalr.pad(srcImg, pd, Color.WHITE, Scalr.OP_ANTIALIAS);
 
-			// 이미지 크기가 변경되었으므로 다시 구합니다.
+			// 이미지 크기 다시 구하기
 			ow = srcImg.getWidth();
 			oh = srcImg.getHeight();
 
-			// 썸네일 비율로 크롭할 크기를 구합니다.
+			// 썸네일 비율로 크롭
 			int nw = ow;
 			int nh = (ow * dh) / dw;
 			if (nh > oh) {
@@ -310,7 +310,7 @@ public class FileUpload {
 				nh = oh;
 			}
 
-			// 늘려진 이미지의 중앙을 썸네일 비율로 크롭 합니다.
+			// 늘려진 이미지의 중앙을 썸네일 비율로 크롭
 			BufferedImage cropImg = Scalr.crop(srcImg, (ow - nw) / 2, (oh - nh) / 2, nw, nh);
 
 			// 리사이즈(썸네일 생성)
@@ -376,11 +376,11 @@ public class FileUpload {
 
 		try {
 			for (int i = 0; i < uploadedFileName.size(); i++) {
-				int a = 0;
+				int cnt = 0;
 				for (int j = 1; j < img.length; j++) {
 					if (uploadedFileName.get(i).equals(img[j])) {
 						uploadThumbnail.add(uploadedFileName.get(i));
-						a++;
+						cnt++;
 					}
 				}
 
@@ -464,7 +464,7 @@ public class FileUpload {
 
 							// 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
 							if (originDelete.exists()) {
-								// 파일을 삭제합니다.
+								// 파일을 삭제
 								originDelete.delete();
 								thumbnailDelete.delete();
 
@@ -481,7 +481,7 @@ public class FileUpload {
 							
 							// 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
 							if (originDelete.exists()) {
-								// 파일을 삭제합니다.
+								// 파일을 삭제
 								originDelete.delete();
 								thumbnailDelete.delete();
 								
@@ -523,7 +523,7 @@ public class FileUpload {
 
 				// 파일이 존재하는지 체크 존재할경우 true, 존재하지않을경우 false
 				if (originDelete.exists()) {
-					// 파일을 삭제합니다.
+					// 파일을 삭제
 					originDelete.delete();
 					thumbnailDelete.delete();
 
@@ -531,7 +531,7 @@ public class FileUpload {
 			}
 
 //				if(thumbnailDelete.exists()) {
-//				    // 파일을 삭제합니다.
+//				    // 파일을 삭제
 //				}
 
 			if(vo != null && vo.getBno().equals("portfolio")) {

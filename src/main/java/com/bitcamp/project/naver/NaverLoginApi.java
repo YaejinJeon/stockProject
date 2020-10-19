@@ -1,4 +1,4 @@
-package com.test.tst;
+package com.bitcamp.project.naver;
 
 import com.github.scribejava.core.builder.api.DefaultApi20;
 

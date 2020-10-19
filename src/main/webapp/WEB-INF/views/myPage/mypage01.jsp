@@ -47,7 +47,6 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 				
 
 				<div class="col-md-10">
-					<!-- cont-area -->
 					<div class="cont-area">
 						<div class="drop-nav">
 							<h1 class="tit-h1 line">내 정보 관리</h1>
@@ -177,9 +176,7 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 								</span>
 							</div>
 					</div>
-					<!-- //cont-area -->
 				</div>
-				<!-- //contents -->
 			</div>
 		</div>
 	</div>
@@ -189,7 +186,6 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
 	
 </body>
 <script>window.jQuery || document.write('<script src="/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
-<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -383,8 +379,6 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
     
     function goPopup() {
         // 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
-
-        // 가운데 띄우기
         var width = "570";
         var height = "420";
         var top = (window.screen.height - height) / 2;
@@ -392,12 +386,6 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
         var url = "/signUpPage/jusoPopup";
         var status = "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no,width=" + width + ",height=" + height + ",top=" + top + ",left=" + left;
         var pop = window.open(url, "pop", status);
-
-        // 왼쪽 상단에 띄우기		
-        //var pop = window.open("/signUpPage/jusoPopup","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
-
-        // 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
-        //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
     }
     //}
     /** API 서비스 제공항목 확대 (2017.02) **/
@@ -411,9 +399,6 @@ A:link, A:visited, A:hover, A:active{cursor: pointer;}
         document.getElementById("addr_post_no").value = roadFullAddr;
         $("#submit").removeAttr("disabled");$("#submit").removeAttr("style");
     }
-    
-   
-    
     
     if (${ loginUser.showEsetSetting } === 0)
     $("#ask-radio-2").prop("checked", true);

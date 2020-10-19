@@ -112,7 +112,7 @@ window.onkeydown = function() {
 							</fieldset>
 							<div class="bt-area"> 
 								<button type="submit" class="btn-b fantasy" data-text-content="true" id="submit">가입하기</button> 
-								<button type="button" class="btn-b" onclick="location.href='/mainPage'">취소</button>
+								<button type="button" class="btn-b" onclick="location.href='/'">취소</button>
 							</div>
 						</form>
 						<dl class="guide-text03">

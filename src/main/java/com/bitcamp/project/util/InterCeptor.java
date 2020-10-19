@@ -19,7 +19,7 @@ public class InterCeptor extends HandlerInterceptorAdapter{
 			
 			if(vo == null || vo.getPoint() >= 0){
 					//로그인페이지로 redirect
-					response.sendRedirect("/mainPage");	
+					response.sendRedirect("/");	
 					return false;
 			}
 		} catch (Exception e) {

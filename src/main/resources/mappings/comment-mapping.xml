@@ -59,43 +59,6 @@
 		order by cno desc
 		limit #{start}, #{cntPerPage}
 	</select>
-	
-	<!-- <select id="commentList" resultType="comment">
-		SELECT * FROM commentList
-		WHERE pno = #{pno} 
-	</select>
-	 -->
-<!-- 	 
-	<select id="commentList" parameterType="page" resultType="comment">
-		select *
-		from commentList
-		where pno=#{pno}
-		limit #{start}, #{cntPerPage}
-	</select> -->
-	 
-	 
-	<!-- <update id="updateBoard">
-		UPDATE board 
-		SET title = #{title}, bcontent = #{bcontent}
-		WHERE pno = #{pno}
-		
-	
-	</update>
-	
-	<select id="getBoard" parameterType = "board" resultType="board">
-		SELECT * 
-		FROM board
-		WHERE pno = #{pno} 
-	</select>
-	
-	<select id="getBoardList" resultType="board">
-		SELECT * FROM board
-		ORDER BY pno DESC
-	</select>
-	
-	<select id="getMyPost" parameterType = "user" resultType="board">
-		SELECT * FROM board
-		WHERE id=#{id}
-		ORDER BY pno DESC
-	</select> -->
+
+
 </mapper>

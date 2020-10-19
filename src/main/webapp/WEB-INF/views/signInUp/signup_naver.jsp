@@ -111,7 +111,7 @@ window.onkeydown = function() {
 							</fieldset>
 							<div class="bt-area"> 
 								<button type="submit" class="btn-b fantasy" data-text-content="true" id="submit">가입하기</button> 
-								<button type="button" class="btn-b" onclick="location.href='/mainPage'">취소</button>
+								<button type="button" class="btn-b" onclick="location.href='/'">취소</button>
 							</div>
 						</form>
 						<dl class="guide-text03">
@@ -202,13 +202,11 @@ window.onkeydown = function() {
 						$("#_liPhoneNum").css('display',"block");
 						idx= true;
 						$('#inputPhone').attr("readonly", true);
-						
  						var html="<p id='err_cust_id' class='ok-text'>문자메세지를 확인해주세요.</p>"; 
 						$('#telResult').empty();
 						$('#telResult').append(html);
 						$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
 					}else if(data == 2 || $.trim($('#inputPhone').val()) == ""){
-						
 						var html="<p id='cust_id-error' class='error-text'>11자리를 입력해주세요.[ ex)01012345678 ]</td></tr>";
 						$('#telResult').empty();
 						$('#telResult').append(html);
@@ -226,22 +224,19 @@ window.onkeydown = function() {
 				error: function(){
 					alert("서버에러");
 				}
-				
 			});  
 		});  
-		//휴대폰 실수로 다른거 입력시 수정버튼 활성화
+		//사용자가 휴대폰 번호 잘못 입력시 수정버튼 활성화
 		$("#telCheckAgain").on("click", function(){
 			document.getElementById("inputPhone").value="";
 			$('#inputPhone').attr("readonly", false);
 			$("#telCheck").toggleClass("removeButton");
 			$("#telCheckAgain").toggleClass("removeButton");
-			$('#telResult').empty();
-			$('#cTelResult').empty();
+			$('#telResult').empty();$('#cTelResult').empty();
 			document.getElementById("inputCtel").value="";
 			$("#inputCtel").removeAttr("disabled");$("#inputCtel").removeAttr("style");$("#inputCtel").removeAttr("readonly");
 			$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
 		})
-		
 		// 휴대폰 인증번호확인
 		$('#cTelCheck').on('click', function(){ 
 			$.ajax({ 

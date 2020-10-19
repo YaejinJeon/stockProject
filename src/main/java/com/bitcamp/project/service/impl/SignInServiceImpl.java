@@ -120,8 +120,8 @@ public class SignInServiceImpl implements SignInService {
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
 			StringBuilder sb = new StringBuilder();
 			sb.append("grant_type=authorization_code");
-			sb.append("&client_id=68ded79fcd9705764c35c87e4e593e4c");
-			sb.append("&redirect_uri=http://106.240.16.163:8080/kakao");
+			sb.append("&client_id=411ad5d7607a5206006f889840ab2b27");
+			sb.append("&redirect_uri=http://www.fantasystock.shop/kakao");
 			sb.append("&code=" + code);
 			bw.write(sb.toString());
 			bw.flush();

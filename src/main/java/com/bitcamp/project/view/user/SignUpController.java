@@ -26,51 +26,38 @@ import com.bitcamp.project.vo.UserVO;
 public class SignUpController {
 	
 	@Autowired
-    PasswordEncoder passwordEncoder;
+  	PasswordEncoder passwordEncoder;
 
 	@Autowired
 	private SignUpService signUpService;
 	
 	// 회원가입화면
-		@GetMapping(value="/signUpPage/1")
-		public String signUpVieww() {
-				return "signInUp/signup01";
-		}
-////		// 회원가입화면
-//		@PostMapping(value="/signUp2")
-//		public String signUpViewww(@RequestParam("agree") String agree) {
-//			if(agree.equals("Y"))
-//				return "signup02";
-//			else
-//				return "signup01";
-//		}
-	
+	@GetMapping(value="/signUpPage/1")
+	public String signUpVieww() {
+		return "signInUp/signup01";
+	}
+
 	
 //	// 회원가입화면
 	@GetMapping(value="/signUpPage/2")
 	public String signUpView(UserVO vo) {
-		System.out.println("vo suv : " + vo.toString());
 		return "signInUp/signup02";
 	}
 
 	// 회원가입완료화면
 	@PostMapping(value="/signUp")
 	public String signUp(UserVO vo, @RequestParam("friend") String friend, Model model) {
+		// 추천인 입력을 했을 경우
 		if(friend != null) {
 			vo.setFriend(friend);
 		}
 		
-		
+		// 비밀번호 암호화 후 vo에 저장
 		String encPassword = passwordEncoder.encode(vo.getPw());
-		System.out.println("암호화 "+encPassword);
-        vo.setPw(encPassword);
-		
-		
-		System.out.println("vo su : " + vo.toString());
+		vo.setPw(encPassword);
 		
 		signUpService.signUp(vo);
 		model.addAttribute("login", vo);
-		
 		
 		return "signInUp/signup03";
 	}
@@ -134,11 +121,9 @@ public class SignUpController {
 		
 		// 추천인 중복확인
 		else if(request.getServletPath().equals("/friendCheck")) {
-			System.out.println("firend "+nickname);
 			map.put("nickname", nickname);
 			
 			int result=signUpService.duplicateCheck(map);
-			System.out.println("friend2 "+result);
 			return Integer.toString(result);
 		}
 		// 휴대폰 인증번호 전송
@@ -146,26 +131,25 @@ public class SignUpController {
 			map.put("tel", tel);
 			int result=signUpService.duplicateCheck(map);
 			if((Integer)tel.length() == 11) {
-				if(result == 0) {
+				if(result == 0) { // 중복확인 후 해당 전화번호 사용자가 없으면
 					SignUpSend send = new SignUpSend();
 					send.sendSMS(tel);
 				}
-			}else {
-				result = 2;
+			}else { // 11자리가 아닐시
+				result = 2; 
 				return Integer.toString(result);
 			}
 			
-			return Integer.toString(result);
+			return Integer.toString(result); // 이미 사용된 전화번호라면
 		}
 		// 휴대폰 인증번호 확인
 		else if(request.getServletPath().equals("/cTelCheck")) {
 			int result = 0;
-			System.out.println("cTel : " + cTel + "/////" + signUpNumStr);
 			if(signUpNumStr.equals(cTel)) {
-				result = 0;
+				result = 0; // 사용자 입력값과 생성된 난수가 같으면
 				return Integer.toString(result);
 			}else {
-				result = 1;
+				result = 1; // 사용자 입력값과 생성된 난수가 같지 않으면
 				return Integer.toString(result);
 			}
 		}

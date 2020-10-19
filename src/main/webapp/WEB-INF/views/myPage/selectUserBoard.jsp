@@ -68,7 +68,7 @@ $(document).ready(function(){
 </head>
 <body>
 
-	<%@include file="mainheader.jsp"%>
+	<%@include file="../mainheader.jsp"%>
 
 
 
@@ -506,7 +506,7 @@ $(document).ready(function(){
 
 
 
-<%@include file="mainfooter.jsp"%>
+<%@include file="../mainfooter.jsp"%>
 		<script type="text/javascript">
 			$(document).ready(
 					function() {

@@ -40,11 +40,24 @@
 			<beans:bean class="com.bitcamp.project.util.InterCeptor"/> 
 		</mvc:interceptor> 
 	</mvc:interceptors>
+	<mvc:interceptors> 
+		<mvc:interceptor> 
+			<mvc:mapping path="/**/*"/> 
+			<mvc:exclude-mapping path="/resources/*"/>
+			<mvc:exclude-mapping path="/accumRanking"/>
+			<mvc:exclude-mapping path="/stockRankAjax"/>
+			<mvc:exclude-mapping path="/mainPage/stockRankAjax"/>
+			<mvc:exclude-mapping path="/newsAjax"/>
+			<mvc:exclude-mapping path="/notice/json"/>
+			<mvc:exclude-mapping path="/trade/search"/>
+			<beans:bean class="com.bitcamp.project.util.URLLogger"/> 
+		</mvc:interceptor> 
+	</mvc:interceptors>
 		
 
 	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
-	<beans:bean id="naverLoginBO" class="com.test.tst.NaverLoginBO" />
-	<beans:bean id="loginController" class="com.test.tst.LoginController" />
+	<beans:bean id="naverLoginBO" class="com.bitcamp.project.naver.NaverLoginBO" />
+	<beans:bean id="loginController" class="com.bitcamp.project.naver.LoginController" />
 	<beans:bean id="visitCountDAO" class="com.bitcamp.project.dao.impl.VisitCountDAOImpl"/>
 	
 	

@@ -1,4 +1,4 @@
-package com.test.tst;
+package com.bitcamp.project.naver;
 
 import java.io.IOException;
 
@@ -21,7 +21,6 @@ import com.github.scribejava.core.model.OAuth2AccessToken;
 
 @Controller
 public class LoginController {
-	/* NaverLoginBO */
 	private NaverLoginBO naverLoginBO;
 	private String apiResult = null;
 	
@@ -36,16 +35,20 @@ public class LoginController {
 	@RequestMapping(value = "/naverLogin", method = { RequestMethod.GET, RequestMethod.POST })
 	public String login(Model model, HttpSession session) {
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-		System.out.println("네이버:" + naverAuthUrl);
-		model.addAttribute("url", naverAuthUrl);
-		return "redirect:"+model.getAttribute("url");
+		return "redirect:"+naverAuthUrl;
 	}
 	@RequestMapping(value = "/callback", method = { RequestMethod.GET, RequestMethod.POST })
-	public String callback(HttpServletRequest request, Model model, @RequestParam(value="code", required=false) String code, @RequestParam(value="state", required=false) String state, HttpSession session)
+	public String callback(HttpServletRequest request, Model model, @RequestParam(value="code", required=false) String code, 
+			@RequestParam(value="state", required=false) String state, HttpSession session)
 			throws IOException, ParseException {
 			OAuth2AccessToken oauthToken;
+			try {
 			oauthToken = naverLoginBO.getAccessToken(session, code, state);
-			apiResult = naverLoginBO.getUserProfile(oauthToken); // String형식의 json데이터
+			}
+			catch(Exception e) {
+				return "redirect:/";
+			}
+			apiResult = naverLoginBO.getUserProfile(oauthToken);
 			JSONParser parser = new JSONParser();
 			Object obj = parser.parse(apiResult);
 			JSONObject jsonObj = (JSONObject) obj;
@@ -64,7 +67,7 @@ public class LoginController {
 			} else {
 				session.setAttribute("loginUser", vo);
 				model.addAttribute("result", apiResult);
-				return "redirect:/mainPage";
+				return "redirect:/";
 			}
 	}
 }

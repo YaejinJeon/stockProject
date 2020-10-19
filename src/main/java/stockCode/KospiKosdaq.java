@@ -37,8 +37,6 @@ public class KospiKosdaq {
 
 				inf.setKospi(kospi);
 				inf.setKosdaq(kosdaq);
-				System.out.println("kospi "+kospi);
-				System.out.println("kosdaq "+kosdaq);
 			
 			return inf;
 			

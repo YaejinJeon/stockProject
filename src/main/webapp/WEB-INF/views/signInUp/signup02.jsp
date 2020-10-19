@@ -137,7 +137,7 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 							</fieldset>
 							<div class="bt-area"> 
 								<button type="submit" class="btn-b fantasy" data-text-content="true" id="submit">가입하기</button> 
-								<button type="button" class="btn-b" onclick="location.href='/mainPage'">취소</button>
+								<button type="button" class="btn-b" onclick="location.href='/'">취소</button>
 							</div>
 						</form>
 						<dl class="guide-text03">
@@ -244,15 +244,15 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 				url: '${pageContext.request.contextPath}/idCheck', 
 				data: { "id" : $('#inputEmail').val() }, 
 				success: function(data){ 
+					// @ 와 .이 없으면 이메일 형식이 안맞는다고 띄우기 
 					var atSign = $.trim($('#inputEmail').val().indexOf("@"));
 					var com = $.trim($('#inputEmail').val().indexOf("."));
-					// @ 와 .이 없으면 이메일 형식이 안맞는다고 띄우기 
+					// 입력값이 공백이지 않고 데이터베이스에 없으면
 					if(data == 0 && $.trim($('#inputEmail').val()) != '' && atSign != -1 && com != -1){
 						$("#idCheck").attr("disabled", "disabled");$("#idCheck").attr("style", "opacity:20%");
 						$("#_liEmailNum").css('display',"block");
 						idx= true;
 						$('#inputEmail').attr("readonly", true);
- 						/* var html="<tr><td colspan='3' style='color: green'>이메일에 인증 번호를 확인해주세요.</td></tr>";  */
  						var html="<p id='err_cust_id' class='ok-text'>이메일에 인증 번호를 확인해주세요.</p>";
 						$('#idResult').empty();
 						$('#cEmailResult').empty();
@@ -263,17 +263,17 @@ function spaceCheck(e) { var keyValue = event.keyCode; if( (keyValue > 31) && (k
 								url: '${pageContext.request.contextPath}/user/signUp/mail', 
 								data: { "id" : $('#inputEmail').val() } 
 							});  
+					// 입력값에 @와 .이 포함되어 있으면
 					}else if(atSign == -1 || com == -1){
 						var html="<p id='cust_id-error' class='error-text'>이메일 형식을 맞춰주세요('@', ' . '을 포함하여야합니다).</p>";
-						
 						$('#idResult').empty();
 						$('#idResult').append(html);
 						document.getElementById("inputEmail").value="";
 						$("#submit").attr("disabled", "disabled");$("#submit").attr("style", "opacity:20%");
 					}
+					// 이미 가입된 이메일이면
 					else{
 						var html="<p id='cust_id-error' class='error-text'>중복된 이메일입니다.</p>";
-						
 						$('#idResult').empty();
 						$('#idResult').append(html);
 						document.getElementById("inputEmail").value="";

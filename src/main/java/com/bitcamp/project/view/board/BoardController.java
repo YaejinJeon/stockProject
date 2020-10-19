@@ -59,11 +59,12 @@ public class BoardController {
 		if (searchStyle.equals("")) {
 			keyword = "";
 		}
-		System.out.println("path " + request.getServletPath());
 
 		if (orderby.equals("")) {
 			orderby = "new";
 		}
+		
+		
 		Map<String, Object> boardList = boardService.boardList(vo, Integer.parseInt(nowPage), searchStyle, keyword,
 				orderby, bno, 30);
 					// 한페이지에 게시물 30개

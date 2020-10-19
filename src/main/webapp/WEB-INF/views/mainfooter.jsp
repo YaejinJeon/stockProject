@@ -22,7 +22,7 @@
         <div id="left">
         <img  id="logoF" src="/resources/img/footerlogo2.png">
             <ul>
-                <li id="companyName" class="liBold"><a href="/mainPage">Fantasy Stock</a></li>
+                <li id="companyName" class="liBold"><a href="/">Fantasy Stock</a></li>
                 <li>서울특별시 마포구 백범로 23 구프라자 B1</li>
                 <li>사업자등록번호: 220-01-2020 </li>
                 <li>Fax: 02-000-0000</li>

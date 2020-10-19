@@ -9,9 +9,10 @@
 		INSERT INTO board (id, nickname, title, bcontent, bdatetime, views, likes, bno, commentCount)
 		VALUES(#{id}, #{nickname}, #{title}, #{bcontent}, sysdate(), 0, 0, #{bno}, 0);
 		
-		UPDATE user SET point = point + 100
-		WHERE id = #{id};
-		
+		<if test='bno neq "customerNotice"'>
+			UPDATE user SET point = point + 100
+			WHERE id = #{id};
+		</if>
 		<if test='bno eq "portfolio"'>
 			INSERT INTO filelist
 			( pno, thumbnailName )
@@ -168,10 +169,7 @@
 			<otherwise>
 				ORDER BY pno DESC
 			</otherwise>
-		
 		</choose>	
-		
-		
 	</select>
 	
 	<select id="portfolioList" parameterType="page" resultType="board">
@@ -223,11 +221,7 @@
 			<when test='util.orderby.equals("mainBest")'>
 				ORDER BY f.pno DESC
 			</when>
-			
-		
 		</choose>	
-		
-		
 	</select>
 	
 	<!-- 공지사항 다른 게시판에 뿌리기 -->

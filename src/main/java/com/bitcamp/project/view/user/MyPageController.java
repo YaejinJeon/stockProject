@@ -53,54 +53,44 @@ public class MyPageController {
 	@Autowired
 	SignInService signInService;
 
-	@GetMapping(value="/naverUnlock")
-	public String test(HttpSession session) {
-		OAuth2AccessToken token = (OAuth2AccessToken)session.getAttribute("naverToken");
-		String test= token.getAccessToken();
-		String CLIENT_ID = "pQCi1ygY9htqntse3luv";
-		String CLIENT_SECRET = "b3yefyBlt9";
-		session.invalidate();
-		return "redirect:https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id="+CLIENT_ID+"&client_secret="+CLIENT_SECRET+"&access_token="+test+"&service_provider=NAVER";
-	}
-	
-	
-	
-	@GetMapping(value = "/withdrawal/check")
-	public String withdrawal_check(@ModelAttribute("id") String id) {
-		if (id.substring(id.length() - 1).equals("_")) {
-			return "redirect:/withdrawal";
-		}
-		System.out.println("@@@@: " + id + "여기로 들어옴");
-		return "myPage/withdrawal_PW";
-	}
-	
-	//네이버 jSP에서 확인 누르면 최종탈퇴하러 오는곳
-	@GetMapping(value = "/withdrawalNaverDecision")
-	public String withdrawalNaverDecision(@ModelAttribute("id") String id, HttpSession session){
-		signInService.withdrawal(id);
-		session.invalidate();
-		return "redirect:/signInPage";
-	}
-	
-	//카카오 jSP에서 확인 누르면 최종탈퇴하러 오는곳
-	@GetMapping(value = "/withdrawalKakaoDecision")
-	public String withdrawalKakaoDecision(@ModelAttribute("id") String id, HttpSession session){
-		signInService.withdrawal_Kakao((String) session.getAttribute("access_Token")); // 카카오 연결 해제 완료
-		signInService.withdrawal(id);
-		session.invalidate();
-		return "redirect:/signInPage";
-	}
-	
-	@GetMapping(value = "/withdrawal")
-	public String withdrawal(Model model, HttpSession session, @ModelAttribute("id") String id,String code, String state) throws IOException {
-		if (id.substring(id.length() - 1).equals("_")) { // social로 회원가입 했으면
-			return "myPage/socialUnlock";
-		}else {
-			signInService.withdrawal(id); // 자체회원가입 했으면
-			session.invalidate();
-			return "redirect:/signInPage";
-		}
-	}
+	//소셜로그인&자체회원가입 구분
+	   @GetMapping(value = "/withdrawal/check")
+	   public String withdrawal_check(@ModelAttribute("id") String id) {
+	      if (id.substring(id.length() - 1).equals("_")) {
+	         return "myPage/socialUnlock";
+	      }
+	      return "myPage/withdrawal_PW";
+	   }
+	   
+	   //네이버 회원가입 회원탈퇴
+	   @GetMapping(value = "/withdrawalNaverDecision")
+	   @ResponseBody
+	   public String withdrawalNaverDecision(Model model, @ModelAttribute("id") String id, HttpSession session){
+	      signInService.withdrawal(id);
+	      OAuth2AccessToken token = (OAuth2AccessToken)session.getAttribute("naverToken");
+	      String getToken= token.getAccessToken();
+	      String CLIENT_ID = "pQCi1ygY9htqntse3luv";
+	      String CLIENT_SECRET = "b3yefyBlt9";
+	      String url = "https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id="+CLIENT_ID+"&client_secret="+CLIENT_SECRET+"&access_token="+getToken+"&service_provider=NAVER";
+	      session.invalidate();
+	      return url;
+	   }
+	   
+	   //카카오 회원가입 회원탈퇴
+	   @GetMapping(value = "/withdrawalKakaoDecision")
+	   public String withdrawalKakaoDecision(@ModelAttribute("id") String id, HttpSession session){
+	      signInService.withdrawal_Kakao((String) session.getAttribute("access_Token")); // 카카오 연결 해제 완료
+	      signInService.withdrawal(id);
+	      session.invalidate();
+	      return "redirect:/signInPage";
+	   }
+	   //자체회원가입 회원탈퇴
+	   @GetMapping(value = "/withdrawal")
+	   public String withdrawal(HttpSession session, @ModelAttribute("id") String id) throws IOException {
+	         signInService.withdrawal(id); 
+	         session.invalidate();
+	         return "redirect:/signInPage";
+	   }
 	
 	@GetMapping(value = "/checkCharging")
 	@ResponseBody
@@ -220,7 +210,7 @@ public class MyPageController {
 			@ModelAttribute("commentKeyword") String commentKeyword, @ModelAttribute("type") String type) {
 		UserVO loginUser = (UserVO) session.getAttribute("loginUser");
 		if (loginUser == null)
-			return "redirect:/mainPage";
+			return "redirect:/";
 		if (bnowPage == null || bnowPage.equals("")) {
 			bnowPage = "1";
 		}

@@ -58,7 +58,7 @@ public class SignInController {
                 vo.setPw(dbPw);
                 session.setAttribute("loginUser", vo);
                 mav.addObject("msg","login");
-                mav.addObject("location","/mainPage");
+                mav.addObject("location","/");
 				mav.setViewName("msg/msg");
 				
 
@@ -103,12 +103,13 @@ public class SignInController {
 			case "kakao":
 				System.out.println("카카오 로그아웃");
 				session.invalidate();
-				return "redirect:Https://kauth.kakao.com/oauth/logout?client_id=68ded79fcd9705764c35c87e4e593e4c&logout_redirect_uri=http://106.240.16.163:8080/mainPage";
+//				return "redirect:Https://kauth.kakao.com/oauth/logout?client_id=411ad5d7607a5206006f889840ab2b27&logout_redirect_uri=http://www.fantasystock.ml";
+				return "redirect:/";
 				
 			case "naver":
 				System.out.println("네이버 로그아웃");
 				session.invalidate();
-				return "redirect:/mainPage";
+				return "redirect:/";
 				
 			default:
 				break;
@@ -116,7 +117,7 @@ public class SignInController {
 			
 		}
 		session.invalidate();
-		return "redirect:/mainPage";
+		return "redirect:/";
 	}
 	
 	@GetMapping(value="/forgetId")

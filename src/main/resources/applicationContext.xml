@@ -61,6 +61,7 @@
 	<aop:config>
 		<aop:pointcut id="txPointcut"
 				expression="execution(* com.bitcamp.project..*(..))"/>
+		
 		<aop:advisor pointcut-ref="txPointcut"
 					advice-ref="txAdvice" />
 	</aop:config>
@@ -100,7 +101,7 @@
 	
 	
 	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
-	<bean id="NaverLoginBO" class="com.test.tst.NaverLoginBO" />
+	<bean id="NaverLoginBO" class="com.bitcamp.project.naver.NaverLoginBO" />
 </beans>
 
 

@@ -371,7 +371,7 @@
 						</div>
 					</form>		
 					<div class="bt-area"> 
-						<button class="btn-b" onclick="location.href='/mainPage'">비동의</button>
+						<button class="btn-b" onclick="location.href='/'">비동의</button>
 						<button class="btn-b fantasy" onclick="nextStep();">동의</button>
 					</div>  
 				</div> 
@@ -452,7 +452,7 @@ function nextStep(){
 
 function goMain() {
 	swal({text:"이용약관 및 개인정보 수집 및 이용에 관한 사항에 대해 동의를 거부할 수 있으나, 동의를 거부할 경우 판타지스탁 회원가입을 할 수 없음을 알려드립니다.", icon:"error"})
-	location.href='/mainPage';
+	location.href='/';
 }
 
 

@@ -1,5 +1,6 @@
 package com.bitcamp.project;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -118,7 +119,12 @@ public class TradingCheck {
 		for (Object key : unsettled.keySet()) {
 			HashMap map = (HashMap) unsettled.get(key);
 			int price = info.get(map.get("stockName")).getCurrentPrice();
-			System.out.print(key + ": [" + map.get("stockName") + "] & [요청 가격: " + map.get("rPrice") + "]");
+			
+			SimpleDateFormat format = new SimpleDateFormat ( "yyyy년 MM월dd일 HH시mm분ss초");
+			Date time_ = new Date();
+			String time = format.format(time_);
+
+			System.out.print(time + " : " + key + ": [" + map.get("stockName") + "] & [요청 가격: " + map.get("rPrice") + "]");
 			System.out.print(" & [현재가 : " + price + "]");
 
 			if (price == (Integer) map.get("rPrice")) { // 가격 동일시

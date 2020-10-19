@@ -34,6 +34,6 @@ class RequestHandler(StreamRequestHandler):
 
 
 if __name__ == '__main__':
-    server = ThreadingTCPServer(('192.168.0.227', PORT), RequestHandler)
+    server = ThreadingTCPServer(('192.168.1.100', PORT), RequestHandler)
     print("Listening On Port", PORT)
     server.serve_forever()
